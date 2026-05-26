@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nosotros — Ecuador Comparte</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles1.css}">
+    <link rel="icon" type="image/png" th:href="@{/images/ecuador.png}">
+</head>
+<body>
+
+<nav class="navbar-table">
+    <div class="navbar-logo">
+        <img th:src="@{/images/ecuador.png}" alt="Logo" style="height:80px;">
+    </div>
+    <div class="navbar-menu">
+        <a th:href="@{/}" class="navbar-link">Inicio</a>
+        <a th:href="@{/about}" class="navbar-link active">Sobre nosotros</a>
+        <a th:href="@{/testimony}" class="navbar-link">Testimonios</a>
+        <a th:href="@{/news}" class="navbar-link">Noticias</a>
+        <a th:href="@{/contact1}" class="navbar-link">Contacto</a>
+    </div>
+    <div class="navbar-actions">
+        <a th:href="@{/contact1}" class="btn-donate">Donar</a>
+    </div>
+</nav>
+
+
+<header class="about-hero">
+    <div class="container">
+        <span class="page-label" style="background-color: rgba(38, 166, 154, 0.25) !important; color: #ffffff !important; font-weight: 700;">NUESTRA IDENTIDAD</span>
+        <h1 class="about-main-title" style="color: #ffffff !important;">Sobre <em>Ecuador Comparte</em></h1>
+    </div>
+</header>
+
+<main class="container about-container">
+
+
+    <p class="about-lead-text">
+        Ecuador Comparte es una iniciativa humanitaria y social enfocada en el apoyo a comunidades vulnerables a través de la educación, la solidaridad y proyectos de desarrollo sostenible.
+    </p>
+
+
+    <div class="about-divider"></div>
+
+
+    <div class="about-grid">
+        <section class="card about-card">
+            <div class="about-card-icon">
+                <th:block th:replace="~{fragments/icons :: alert}"></th:block>
+            </div>
+            <h3>Nuestra Misión</h3>
+            <p>Empoderar a las comunidades locales mediante proyectos colaborativos, programas educativos rigurosos y asistencia humanitaria directa.</p>
+        </section>
+
+        <section class="card about-card">
+            <div class="about-card-icon">
+                <th:block th:replace="~{fragments/icons :: openimage}"></th:block>
+            </div>
+            <h3>Nuestra Visión</h3>
+            <p>Construir una sociedad más inclusiva, equitativa y solidaria donde cada persona cuente con oportunidades reales de crecimiento y bienestar integral.</p>
+        </section>
+    </div>
+
+
+    <section class="about-contact-box">
+        <div class="about-contact-icon">
+            <th:block th:replace="~{fragments/icons :: mail}"></th:block>
+        </div>
+        <h3>Contacto</h3>
+        <p class="about-contact-subtitle">¿Tienes alguna duda o quieres colaborar? Escríbenos:</p>
+
+        <div class="about-contact-info">
+            <span><strong>Correo:</strong> info@ecuadorcomparte.org</span>
+        </div>
+
+        <a th:href="@{/contact1}" class="btn-donate btn-about-action">
+            <th:block th:replace="~{fragments/icons :: heart}"></th:block>
+            <span>Enviar Mensaje</span>
+        </a>
+    </section>
+
+</main>
+
+<footer class="main-footer">
+    <div class="footer-container">
+
+        <div class="footer-column footer-brand">
+
+            <div class="logo-footer-wrapper">
+                <img src="/images/ecuador.png" alt="Ecuador Comparte Logo" class="footer-logo-img">
+            </div>
+
+            <div class="footer-socials">
+
+                <a href="https://www.facebook.com/Ccomparte" target="_blank" class="social-icon">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+
+
+                <a href="https://www.instagram.com/ccomparte/" target="_blank" class="social-icon">
+                    <i class="fab fa-instagram"></i>
+                </a>
+
+
+                <a href="https://www.linkedin.com/company/fundaci%C3%B3n-colombia-comparte/" target="_blank" class="social-icon">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+
+
+                <a href="https://www.youtube.com/channel/UCUF87CDCgtl2RSug-Jeqmig" target="_blank" class="social-icon">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+        </div>
+
+
+        <div class="footer-column">
+            <h3>Explora</h3>
+            <ul class="footer-links">
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/about">Quienes somos</a></li>
+                <li><a href="/testimony">Testimonios</a></li>
+                <li><a href="/news">Noticias</a></li>
+                <li><a href="/contact1">Contacto</a></li>
+            </ul>
+        </div>
+
+
+        <div class="footer-column">
+            <h3>Contáctanos</h3>
+            <ul class="footer-contact-info">
+                <li>
+                    <a href="tel:+573212302138" style="text-decoration: none; color: inherit; transition: color 0.2s;">
+                        (+57) 321 230 2138
+                    </a>
+                </li>
+
+                <li>
+                    <a href="tel:+573164673087" style="text-decoration: none; color: inherit; transition: color 0.2s;">
+                        (+57) 316 467 3087
+                    </a>
+                </li>
+
+                <li>
+                    <a href="mailto:comunicaciones@colombiacomparte.com?subject=Contacto" style="text-decoration: none; color: inherit; transition: color 0.2s;">
+                        comunicaciones@colombiacomparte.com
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Ecuador Comparte. Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+</body>
+</html>

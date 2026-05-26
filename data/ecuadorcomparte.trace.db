@@ -1,0 +1,12 @@
+2026-05-22 03:01:51.192181-05:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "IMAGE_URL CHARACTER VARYING(255)": "'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMTEhUTExMWFhUWGBgZ... (13787)"
+Value too long for column "IMAGE_URL CHARACTER VARYING(255)": "'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMTEhUTExMWFhUWGBgZ... (13787)"; SQL statement:
+insert into news (category,content,created_at,image_url,published,reading_time_min,summary,title,id) values (?,?,?,?,?,?,?,?,default) [22001-240]
+2026-05-22 03:10:03.398655-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "IMAGE_URL CHARACTER VARYING(255)": "'https://caracoltv.brightspotcdn.com/dims4/default/8ea693b/2147483647/strip/true... (256)"
+Value too long for column "IMAGE_URL CHARACTER VARYING(255)": "'https://caracoltv.brightspotcdn.com/dims4/default/8ea693b/2147483647/strip/true... (256)"; SQL statement:
+insert into news (category,content,created_at,image_url,published,reading_time_min,summary,title,id) values (?,?,?,?,?,?,?,?,default) [22001-240]
+2026-05-22 03:10:34.131675-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "IMAGE_URL CHARACTER VARYING(255)": "'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxETEhUTExMWFhUXFyAb... (19615)"
+Value too long for column "IMAGE_URL CHARACTER VARYING(255)": "'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxETEhUTExMWFhUXFyAb... (19615)"; SQL statement:
+insert into news (category,content,created_at,image_url,published,reading_time_min,summary,title,id) values (?,?,?,?,?,?,?,?,default) [22001-240]

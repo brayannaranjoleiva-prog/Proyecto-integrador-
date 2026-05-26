@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{dashboard/layout :: dashLayout('Solicitudes de Contacto', ~{::#dash-content})}">
+
+<body>
+
+<div id="dash-content" class="dash-container-internal">
+
+  <header class="dash-internal-header">
+
+    <div class="header-title-wrapper">
+
+      <h1>Solicitudes de Contacto</h1>
+
+      <p class="dash-subtitle">
+        Gestión, lectura y control de los mensajes recibidos desde el portal.
+      </p>
+
+    </div>
+    <link rel="icon" type="image/png" th:href="@{/images/ecuador.png}">
+  </header>
+
+  <div class="card dash-table-wrapper">
+
+    <table th:if="${contacts != null and !contacts.isEmpty()}"
+           class="dash-custom-table">
+
+      <thead>
+
+      <tr>
+
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+
+      </tr>
+
+      </thead>
+
+      <tbody>
+
+      <tr th:each="c : ${contacts}">
+
+        <td th:text="${c.id}"></td>
+
+        <td th:text="${c.fullName}"></td>
+
+        <td th:text="${c.email}"></td>
+
+        <!-- STATUS -->
+        <td>
+
+          <form th:action="@{/dashboard/contacts/{id}/status(id=${c.id})}"
+                method="post">
+
+            <select name="status"
+                    onchange="this.form.submit()">
+
+              <option value="PENDING"
+                      th:selected="${c.status.name() == 'PENDING'}">
+
+                Pendiente
+
+              </option>
+
+              <option value="REVIEWED"
+                      th:selected="${c.status.name() == 'REVIEWED'}">
+
+                Revisado
+
+              </option>
+
+              <option value="RESOLVED"
+                      th:selected="${c.status.name() == 'RESOLVED'}">
+
+                Resuelto
+
+              </option>
+
+            </select>
+
+          </form>
+
+        </td>
+
+        <!-- ACTIONS -->
+        <td class="actions-cell">
+          <div class="actions-container">
+
+            <a th:href="@{/dashboard/contacts/{id}(id=${c.id})}"
+               class="btn-view-contact">
+              Ver
+            </a>
+
+            <form th:action="@{/dashboard/contacts/{id}/delete(id=${c.id})}"
+                  method="post">
+              <button type="submit"
+                      class="btn-delete-contact"
+                      onclick="return confirm('¿Eliminar mensaje?');">
+                Borrar
+              </button>
+            </form>
+
+          </div>
+        </td>
+
+      </tr>
+
+      </tbody>
+
+    </table>
+
+    <!-- EMPTY -->
+    <div th:if="${contacts == null or contacts.isEmpty()}"
+         class="dash-table-empty">
+
+      <h3>Bandeja vacía</h3>
+
+      <p>No existen solicitudes registradas.</p>
+
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

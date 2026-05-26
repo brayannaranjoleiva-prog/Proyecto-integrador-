@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{dashboard/layout :: dashLayout('Detalle de Contacto', ~{::#dash-content})}">
+
+<head>
+  <title>Detalle de Solicitud — Panel de Control</title>
+  <link rel="icon" type="image/png" th:href="@{/images/ecuador.png}">
+</head>
+
+<body>
+
+<div id="dash-content" class="dash-container-internal">
+
+
+  <div class="dash-breadcrumbs">
+    <a th:href="@{/dashboard/contacts}" class="btn-dash-back">
+      ← Volver a la bandeja de entrada
+    </a>
+  </div>
+
+
+  <header class="dash-internal-header" style="margin-top: 15px;">
+    <div class="header-title-wrapper">
+      <h1 th:text="'Solicitud de: ' + ${contact.fullName}">Detalle de Contacto</h1>
+      <p class="dash-subtitle" th:text="'Asunto: ' + ${contact.subject}">Asunto del mensaje</p>
+    </div>
+  </header>
+
+
+  <div class="card dash-detail-card">
+
+
+    <div class="detail-info-grid">
+
+      <div class="detail-field-box">
+        <span class="field-label">Nombre Completo</span>
+        <div class="field-value-flex">
+          <span class="user-avatar-initial" th:text="${#strings.substring(contact.fullName, 0, 1)}">U</span>
+          <strong th:text="${contact.fullName}">Juan Pérez</strong>
+        </div>
+      </div>
+
+      <div class="detail-field-box">
+        <span class="field-label">Correo Electrónico</span>
+        <p class="field-value-text" th:text="${contact.email}">correo@ejemplo.com</p>
+      </div>
+
+      <div class="detail-field-box">
+        <span class="field-label">Teléfono de Contacto</span>
+        <p class="field-value-text" th:text="${contact.phone != null and !contact.phone.isEmpty()} ? ${contact.phone} : 'No registrado'">0999999999</p>
+      </div>
+
+      <div class="detail-field-box">
+        <span class="field-label">Ciudad de Origen</span>
+        <p class="field-value-text" th:text="${contact.city != null and !contact.city.isEmpty()} ? ${contact.city} : 'No especificada'">Quito</p>
+      </div>
+
+    </div>
+
+    <hr class="detail-divider">
+
+
+    <div class="detail-message-section">
+      <span class="field-label">Mensaje o Solicitud Enviada</span>
+      <div class="message-content-bubble">
+        <p th:text="${contact.message}">Aquí se renderizará el texto completo que escribió el usuario...</p>
+      </div>
+    </div>
+
+    <hr class="detail-divider">
+
+
+    <div class="detail-footer-status">
+      <div class="status-display-wrapper">
+        <span class="field-label" style="margin-bottom: 5px;">Estado de la solicitud:</span>
+
+
+        <span th:classappend="${contact.status.name() == 'PENDING'} ? 'badge-warning' :
+                       (${contact.status.name() == 'REVIEWED'} ? 'badge-info' : 'badge-success')"
+              th:text="${contact.status.displayName}">
+</span>
+      </div>
+
+
+      <div class="detail-actions-wrapper">
+        <span class="text-muted-help">Revisado desde el panel de control ejecutivo.</span>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

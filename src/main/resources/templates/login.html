@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión — Ecuador Office</title>
+
+
+    <link rel="stylesheet" type="text/css" th:href="@{/login.css}">
+    <link rel="icon" type="image/png" th:href="@{/images/ecuador.png}">
+
+</head>
+<body>
+
+<div class="login-container">
+
+
+    <aside class="brand-panel">
+        <div class="brand-content">
+            <span class="page-label">Portal Administrativo</span>
+            <h1 class="brand-title">
+                Latinoamérica <br><em>Comparte.</em>
+            </h1>
+            <div class="brand-divider"></div>
+            <h3 class="brand-subtitle">Gestiona el impacto de tu región</h3>
+            <p class="brand-text">
+                Accede al panel de control centralizado para administrar de forma ágil tus historias de éxito, testimonios, boletines de noticias y solicitudes de la comunidad.
+            </p>
+        </div>
+        <footer class="brand-footer">
+            © 2026 Latinoamérica Compartida • Ecuador Office
+        </footer>
+    </aside>
+
+
+    <main class="form-panel">
+        <div class="form-wrapper">
+            <header class="form-header">
+                <h2>Bienvenido de nuevo</h2>
+                <p>Ingresa tus credenciales autorizadas para continuar.</p>
+            </header>
+
+
+            <div th:if="${param.error}" class="alert alert-danger">
+                <span>🛑</span> Usuario o contraseña incorrectos. Inténtalo de nuevo.
+            </div>
+
+            <div th:if="${param.logout}" class="alert alert-success">
+                <span>🔑</span> Sesión cerrada correctamente.
+            </div>
+
+
+            <form th:action="@{/login}" method="post">
+                <div class="form-group">
+                    <label for="username">Usuario</label>
+                    <input type="text"
+                           id="username"
+                           name="username"
+                           placeholder="ejemplo@ecuadorcomparte.org"
+                           required
+                           class="input-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password"
+                           id="password"
+                           name="password"
+                           placeholder="••••••••••••"
+                           required
+                           class="input-control">
+                </div>
+
+                <button type="submit" class="btn-login">
+                    Iniciar sesión
+                </button>
+
+                <div class="back-link-wrapper">
+                    <a th:href="@{/}" class="back-link">
+                        ← Volver al sitio público
+                    </a>
+                </div>
+            </form>
+        </div>
+    </main>
+
+</div>
+
+</body>
+</html>

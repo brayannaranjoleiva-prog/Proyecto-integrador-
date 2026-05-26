@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{dashboard/layout :: dashLayout(~{::title}, ~{::div#dash-content})}">
+<link rel="icon" type="image/png" th:href="@{/images/ecuador.png}">
+<head>
+  <title>Resumen Ejecutivo — Panel de Control</title>
+</head>
+
+<body>
+
+<div id="dash-content" class="dash-wrapper">
+
+
+  <section class="dash-hero-banner">
+    <div class="dash-hero-content">
+      <span class="dash-badge-status">
+        <span class="status-dot"></span> SISTEMA OPERATIVO
+      </span>
+      <h1>Portal de Impacto Ecuador</h1>
+      <p>Gestión y supervisión de nuestras iniciativas locales. Monitorea solicitudes, publica avances y amplifica nuestra visión compartida.</p>
+    </div>
+  </section>
+
+
+  <div class="dash-grid-2col">
+
+
+    <section class="card dash-card">
+      <div class="card-header-flex">
+        <h2><th:block th:replace="~{fragments/icons :: user}"></th:block> Solicitudes de Contacto</h2>
+        <span class="card-subtitle-count">Mensajes recientes</span>
+      </div>
+
+      <div class="dash-data-list">
+        <!-- Bucle de solicitudes individuales -->
+        <div th:each="c, iter : ${contacts}" th:if="${iter.index < 2}" class="dash-data-item">
+          <div class="dash-icon-cell">
+            <th:block th:replace="~{fragments/icons :: user}"></th:block>
+          </div>
+          <div class="dash-content-cell">
+            <strong th:text="${c.fullName}">Nombre</strong>
+            <span class="dash-item-subtext" th:text="${c.subject}">Asunto</span>
+          </div>
+          <div class="dash-action-cell">
+            <a th:href="@{/dashboard/contacts/{id}(id=${c.id})}" class="btn-dash-action">Ver</a>
+          </div>
+        </div>
+
+
+        <div th:if="${contacts == null or contacts.isEmpty()}" class="dash-list-empty">
+          <p>📩 No hay solicitudes pendientes.</p>
+        </div>
+      </div>
+
+      <div class="card-footer-action">
+        <a th:href="@{/dashboard/contacts}" class="dash-link-all">Ver todas las solicitudes ➔</a>
+      </div>
+    </section>
+
+
+    <section class="card dash-card dash-promo-card">
+      <div class="promo-card-icon">
+        <th:block th:replace="~{fragments/icons :: mail}"></th:block>
+      </div>
+      <h2>Publicación de Noticias</h2>
+      <p class="promo-card-text">Mantén informada a la comunidad. Redacta y publica boletines informativos o actualizaciones de forma inmediata en el sitio público.</p>
+      <div class="promo-card-action">
+        <a th:href="@{/dashboard/news/new}" class="btn-dash-primary">
+          <span>+ Crear Nuevo Boletín</span>
+        </a>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- SECCIÓN INFERIOR: GESTIÓN DE TESTIMONIOS -->
+  <section class="dash-section-block">
+    <div class="dash-section-header">
+      <div class="section-title-wrapper">
+        <h2><th:block th:replace="~{fragments/icons :: openimage}"></th:block> Testimonios Recientes</h2>
+        <p>Administración del catálogo de experiencias de la comunidad</p>
+      </div>
+      <a th:href="@{/dashboard/testimony}" class="btn-dash-outline">Gestionar Biblioteca</a>
+    </div>
+
+    <div class="dash-stories-grid">
+      <!-- Bucle de testimonios existentes -->
+      <div th:each="s, iter : ${testimonials}" th:if="${iter.index < 2}" class="dash-story-card card">
+        <div class="story-img-container">
+          <img th:src="${s.imageUrl}" alt="Testimonio" class="dash-story-img">
+        </div>
+        <div class="story-card-body">
+          <strong class="story-card-title" th:text="${s.title}">Título del Testimonio</strong>
+          <a th:href="@{/dashboard/testimony/{id}/edit(id=${s.id})}" class="btn-story-edit">
+            <th:block th:replace="~{fragments/icons :: editproduct}"></th:block>
+            <span>Editar</span>
+          </a>
+        </div>
+      </div>
+
+
+      <div class="dash-story-card card empty-dashed-card">
+        <a th:href="@{/dashboard/testimony/new}" class="empty-card-link">
+          <span class="empty-card-icon">➕</span>
+          <strong class="empty-card-title">Redactar Nuevo Testimonio</strong>
+          <span class="empty-card-sub">Crear borrador de narrativa</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

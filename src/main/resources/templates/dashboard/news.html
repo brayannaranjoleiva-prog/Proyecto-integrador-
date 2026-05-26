@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{dashboard/layout :: dashLayout('Administración de Noticias', ~{::#dash-content})}">
+<body>
+
+<div id="dash-content" class="dash-container-internal">
+
+
+  <header class="dash-internal-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+    <div class="header-title-wrapper">
+      <h1>Administración de Noticias</h1>
+      <p class="dash-subtitle">Gestiona, edita y controla los boletines o artículos publicados en el portal.</p>
+    </div>
+    <div class="header-actions-wrapper">
+      <a th:href="@{/dashboard/news/new}" class="btn-dash-primary" style="padding: 10px 20px; text-decoration: none; font-size: 0.9rem;">
+        <span>+ Nueva Noticia</span>
+      </a>
+    </div>
+    <link rel="icon" type="image/png" th:href="@{/images/ecuador.png}">
+  </header>
+
+
+  <div class="card dash-table-wrapper" style="margin-top: 20px;">
+
+    <table th:if="${newsList != null and !newsList.isEmpty()}" class="dash-custom-table">
+      <thead>
+      <tr>
+        <th>TÍTULO</th>
+        <th>RESUMEN</th>
+        <th>CATEGORÍA</th>
+        <th>LECTURA</th>
+        <th class="th-status">ESTADO</th>
+        <th class="th-actions">ACCIONES</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="n : ${newsList}" class="dash-table-row">
+        <td>
+          <strong style="color: #1e293b; font-weight: 700; display: block;" th:text="${n.title}">Título</strong>
+        </td>
+        <td>
+          <span class="text-summary-truncate" th:text="${n.summary}">Resumen...</span>
+        </td>
+        <td>
+          <span class="badge-id" style="font-family: inherit; font-size: 0.8rem; background-color: #f1f5f9;" th:text="${n.category != null ? n.category : '—'}">Categoría</span>
+        </td>
+        <td>
+          <span style="color: #64748b; font-size: 0.9rem; white-space: nowrap;" th:text="${n.readingTimeMin + ' min'}">5 min</span>
+        </td>
+        <td>
+          <span th:if="${n.published}" class="badge-status status-published" style="font-size: 0.75rem; white-space: nowrap;">Publicado</span>
+          <span th:unless="${n.published}" class="badge-status status-hidden" style="font-size: 0.75rem; background-color: #e2e8f0; color: #475569; white-space: nowrap;">Borrador</span>
+        </td>
+
+
+        <td class="actions-cell">
+          <div class="actions-container">
+
+            <a th:href="@{/dashboard/news/{id}/edit(id=${n.id})}" class="btn-action btn-edit" title="Editar noticia">
+              ✏️
+            </a>
+
+            <form th:action="@{/dashboard/news/{id}/delete(id=${n.id})}" method="post" style="display:inline;"
+                  onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta noticia permanentemente?')">
+              <button type="submit" class="btn-action btn-delete" title="Eliminar noticia">
+                🗑️
+              </button>
+            </form>
+
+          </div>
+        </td>
+
+      </tr>
+      </tbody>
+    </table>
+
+
+    <div th:if="${newsList == null or newsList.isEmpty()}" class="dash-table-empty" style="padding: 80px 20px;">
+      <div class="empty-inbox-icon">📰</div>
+      <h3>Sin noticias aún</h3>
+      <p>Crea el primer artículo de prensa utilizando el botón de la esquina superior.</p>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

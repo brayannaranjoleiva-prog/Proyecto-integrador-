@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title th:text="${news.title} + ' — Ecuador Comparte'"></title>
+  <link rel="stylesheet" type="text/css" th:href="@{/styles1.css}">
+  <link rel="icon" type="image/png" th:href="@{/images/ecuador.png}">
+</head>
+<body>
+
+<nav class="navbar-table">
+  <div class="navbar-logo">
+    <img th:src="@{/images/ecuador.png}" alt="Logo" style="height: 80px;">
+  </div>
+  <div class="navbar-menu">
+    <a th:href="@{/}" class="navbar-link">Inicio</a>
+    <a th:href="@{/about}" class="navbar-link">Sobre nosotros</a>
+
+    <a th:href="@{/testimony}" class="navbar-link">Testimonios</a>
+    <!-- Noticias se mantiene como la sección activa -->
+    <a th:href="@{/news}" class="navbar-link active">Noticias</a>
+    <a th:href="@{/contact1}" class="navbar-link">Contacto</a>
+  </div>
+  <div class="navbar-actions">
+    <a th:href="@{/contact1}" class="btn-donate">Donate</a>
+  </div>
+</nav>
+
+<table width="90%" border="0" cellspacing="0" cellpadding="0" align="center" style="max-width: 800px; margin-top: 40px; margin-bottom: 60px;">
+  <tr>
+    <td>
+
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 25px;">
+        <tr>
+          <td>
+            <div style="margin-bottom: 12px;">
+                <span style="background-color: var(--mint-light); color: var(--forest); font-weight: 700; font-size: 0.78rem; text-transform: uppercase; padding: 6px 14px; border-radius: var(--radius-pill); border: 1px solid var(--mint);">
+                  📌 <span th:text="${news.category}">Ambiente</span>
+                </span>
+              <span style="margin-left: 15px; color: var(--text-muted); font-size: 0.88rem;">
+                  ⏱ <span th:text="${news.readingTimeMin}">8</span> min de lectura
+                </span>
+            </div>
+
+            <h1 th:text="${news.title}" style="font-family: var(--font-display); font-size: 2.6rem; color: var(--forest); margin: 0 0 15px 0;"></h1>
+
+            <p th:text="${news.summary}" style="font-family: var(--font-body); font-size: 1.15rem; line-height: 1.6; color: var(--text-dark); opacity: 0.9;"></p>
+          </td>
+        </tr>
+      </table>
+
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 35px; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow);">
+        <tr>
+          <td>
+            <img th:src="${news.imageUrl != null and !#strings.isEmpty(news.imageUrl)
+                     ? news.imageUrl
+                     : 'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&q=80'}"
+                 alt="Imagen de portada"
+                 style="width: 100%; max-height: 450px; object-fit: cover; display: block;">
+          </td>
+        </tr>
+      </table>
+
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td style="line-height: 1.75; font-size: 1.05rem; color: var(--text-dark);">
+
+            <div style="margin-bottom: 25px; border-bottom: 1px solid var(--border); padding-bottom: 15px; display: flex; justify-content: space-between;">
+              <a th:href="@{/news}" style="color: var(--forest-mid); text-decoration: none; font-weight: 700;">← Volver a noticias</a>
+              <span style="color: var(--text-muted); font-size: 0.85rem;" th:text="${#temporals.format(news.createdAt, 'dd MMMM, yyyy')}"></span>
+            </div>
+
+            <article th:utext="${news.content}"></article>
+
+            <div style="margin-top: 50px; text-align: center;">
+              <a th:href="@{/news}" class="btn-donate">Volver al listado</a>
+            </div>
+
+          </td>
+        </tr>
+      </table>
+
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

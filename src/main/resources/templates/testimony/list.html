@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Testimonios — Ecuador Comparte</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles1.css}">
+    <link rel="icon" type="image/png" th:href="@{/images/ecuador.png}">
+</head>
+<body>
+
+
+<nav class="navbar-table">
+    <div class="navbar-logo">
+        <img th:src="@{/images/ecuador.png}" alt="Logo" style="height:75px;">
+    </div>
+    <div class="navbar-menu">
+        <a th:href="@{/}" class="navbar-link">Inicio</a>
+        <a th:href="@{/about}" class="navbar-link">Sobre Nosotros</a>
+        <a th:href="@{/testimony}" class="navbar-link active">Testimonios</a>
+        <a th:href="@{/news}" class="navbar-link">Noticias</a>
+        <a th:href="@{/contact1}" class="navbar-link">Contacto</a>
+    </div>
+    <div class="navbar-actions">
+        <a th:href="@{/contact1}" class="btn-donate">Donar</a>
+    </div>
+</nav>
+
+
+<section class="hero-section">
+    <span class="page-label" style="background-color: rgba(38, 166, 154, 0.25) !important; color: #ffffff !important; font-weight: 700;">NUESTRA COMUNIDAD</span>
+    <h1 class="hero-title">Testimonios de <em>Impacto</em></h1>
+    <p class="hero-subtitle">Historias reales de personas que han sido parte del cambio y crecimiento de Ecuador Comparte.</p>
+</section>
+
+
+<main class="container testimony-page-container">
+
+
+    <div class="testimony-modern-grid" th:if="${testimonials != null and !testimonials.isEmpty()}">
+
+
+        <div class="card testimony-modern-card" th:each="t : ${testimonials}">
+
+
+            <div class="testimony-header-block">
+                <div class="avatar-container">
+
+                    <img th:if="${t.imageUrl != null and !t.imageUrl.isEmpty()}"
+                         th:src="${t.imageUrl}" alt="persona" class="avatar">
+                    <div th:unless="${t.imageUrl != null and !t.imageUrl.isEmpty()}" class="avatar-placeholder">
+                        <span>💬</span>
+                    </div>
+                </div>
+                <div class="author-meta">
+                    <strong class="author-name" th:text="${t.author}">Nombre</strong>
+                    <span class="author-location" th:text="${t.location}">Ubicación</span>
+                </div>
+            </div>
+
+
+            <p class="testimony-text-content" th:text="'“' + ${t.summary} + '”'">Mensaje del testimonio</p>
+
+
+            <div class="testimony-status-footer">
+                <span th:if="${t.published}" class="badge-status status-published">Publicado</span>
+                <span th:unless="${t.published}" class="badge-status status-hidden">Oculto</span>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="no-data-box" th:if="${testimonials == null or testimonials.isEmpty()}">
+        <h3>No hay testimonios registrados</h3>
+        <p>Aún no existen testimonios publicados en el sistema.</p>
+    </div>
+
+</main>
+
+<footer class="main-footer">
+    <div class="footer-container">
+
+        <div class="footer-column footer-brand">
+
+            <div class="logo-footer-wrapper">
+                <img src="/images/ecuador.png" alt="Ecuador Comparte Logo" class="footer-logo-img">
+            </div>
+
+            <div class="footer-socials">
+
+                <a href="https://www.facebook.com/Ccomparte" target="_blank" class="social-icon">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+
+
+                <a href="https://www.instagram.com/ccomparte/" target="_blank" class="social-icon">
+                    <i class="fab fa-instagram"></i>
+                </a>
+
+
+                <a href="https://www.linkedin.com/company/fundaci%C3%B3n-colombia-comparte/" target="_blank" class="social-icon">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+
+
+                <a href="https://www.youtube.com/channel/UCUF87CDCgtl2RSug-Jeqmig" target="_blank" class="social-icon">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+        </div>
+
+
+        <div class="footer-column">
+            <h3>Explora</h3>
+            <ul class="footer-links">
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/about">Quienes somos</a></li>
+                <li><a href="/testimony">Testimonios</a></li>
+                <li><a href="/news">Noticias</a></li>
+                <li><a href="/contact1">Contacto</a></li>
+            </ul>
+        </div>
+
+
+        <div class="footer-column">
+            <h3>Contáctanos</h3>
+            <ul class="footer-contact-info">
+                <li>
+                    <a href="tel:+573212302138" style="text-decoration: none; color: inherit; transition: color 0.2s;">
+                        (+57) 321 230 2138
+                    </a>
+                </li>
+
+                <li>
+                    <a href="tel:+573164673087" style="text-decoration: none; color: inherit; transition: color 0.2s;">
+                        (+57) 316 467 3087
+                    </a>
+                </li>
+
+                <li>
+                    <a href="mailto:comunicaciones@colombiacomparte.com?subject=Contacto" style="text-decoration: none; color: inherit; transition: color 0.2s;">
+                        comunicaciones@colombiacomparte.com
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Ecuador Comparte. Todos los derechos reservados.</p>
+    </div>
+</footer>
+</body>
+</html>

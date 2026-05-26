@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{dashboard/layout :: dashLayout(~{::title}, ~{::div#dash-content})}">
+<head>
+  <title>Testimonios — Dashboard</title>
+
+  <link rel="stylesheet" th:href="@{/styles1.css}">
+  <link rel="icon" type="image/png" th:href="@{/images/ecuador.png}">
+</head>
+
+<body>
+
+<div id="dash-content" th:fragment="dash-content">
+
+
+  <div class="dash-section-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+    <div>
+      <p style="color: #64748b; font-size: 0.9rem; margin: 0;">Gestión de Contenido</p>
+      <h1 class="dash-title" style="margin: 5px 0 0 0; font-size: 1.75rem; color: #1e293b;">Testimonios</h1>
+      <p style="color: #64748b; font-size: 0.9rem; margin: 5px 0 0 0;">Administra las historias de impacto comunitario y testimonios.</p>
+    </div>
+    <div>
+
+      <a th:href="@{/dashboard/testimony/new}" class="btn-primary-custom" style="text-decoration: none; display: inline-block;">
+        + Nuevo Testimonio
+      </a>
+    </div>
+  </div>
+
+
+  <div class="card dash-table-wrapper" style="margin-top: 20px;">
+
+    <table th:if="${testimonials != null and !testimonials.isEmpty()}" class="dash-custom-table">
+      <thead>
+      <tr>
+
+        <th width="12%">Imagen</th>
+        <th width="20%">Título</th>
+        <th width="15%">Categoría</th>
+        <th width="15%">Autor / Ubicación</th>
+        <th width="13%">Estado</th>
+        <th width="25%" style="text-align: center;">Acciones</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="t : ${testimonials}" class="dash-table-row">
+
+
+        <td align="center" style="vertical-align: middle;">
+          <div style="width: 60px; height: 60px; border-radius: 8px; overflow: hidden; background: #f1f5f9; display: flex; align-items: center; justify-content: center; border: 1px solid #e2e8f0;">
+            <img th:if="${t.imageUrl != null and !t.imageUrl.isBlank()}"
+                 th:src="${t.imageUrl}"
+                 style="width: 100%; height: 100%; object-fit: cover;"
+                 alt="testimonio">
+            <span th:unless="${t.imageUrl != null and !t.imageUrl.isBlank()}" style="font-size: 1.4rem;">📖</span>
+          </div>
+        </td>
+
+
+        <td>
+          <strong style="color: #1e293b; font-weight: 700; display: block;" th:text="${t.title}">Título del Testimonio</strong>
+        </td>
+
+
+        <td>
+            <span class="badge-id" style="font-family: inherit; font-size: 0.8rem; background-color: #f1f5f9; padding: 4px 8px; border-radius: 6px;"
+                  th:text="${t.category != null ? t.category : '—'}">Categoría</span>
+        </td>
+
+
+        <td>
+          <strong style="color: #475569; font-weight: 600; display: block;" th:text="${t.author != null ? t.author : '—'}">Autor</strong>
+          <small style="color: #94a3b8; font-size: 0.8rem; display: block; margin-top: 2px;" th:text="${t.location != null ? t.location : '—'}">Ubicación</small>
+        </td>
+
+
+        <td>
+          <span th:if="${t.published}" class="badge-status status-published" style="font-size: 0.75rem; white-space: nowrap;">Publicado</span>
+          <span th:unless="${t.published}" class="badge-status status-hidden" style="font-size: 0.75rem; background-color: #e2e8f0; color: #475569; white-space: nowrap;">Borrador</span>
+        </td>
+
+
+        <td class="actions-cell">
+        <div class="actions-container">
+
+          <a th:href="@{/dashboard/testimony/{id}/edit(id=${t.id})}" class="btn-action btn-edit" title="Editar testimonio">
+            ✏️
+          </a>
+
+          <form th:action="@{/dashboard/testimony/{id}/delete(id=${t.id})}" method="post" style="display:inline;"
+                onsubmit="return confirm('¿Estás seguro de que deseas eliminar este testimonio permanentemente?')">
+            <button type="submit" class="btn-action btn-delete" title="Eliminar testimonio">
+              🗑️
+            </button>
+          </form>
+
+        </div>
+      </td>
+
+      </tr>
+      </tbody>
+    </table>
+
+
+    <div th:if="${testimonials == null or testimonials.isEmpty()}" class="dash-table-empty" style="padding: 60px 20px; text-align: center;">
+      <div style="font-size: 3rem; margin-bottom: 15px;">💬</div>
+      <h3 style="color: #1e293b; margin-bottom: 8px;">No hay testimonios disponibles</h3>
+      <p style="color: #64748b; margin-bottom: 0;">Crea el primer testimonio de impacto utilizando el botón de arriba.</p>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="dashLayout(title, content)">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">Dashboard</title>
+    <link rel="stylesheet" th:href="@{/styles1.css}">
+    <link rel="icon" type="image/png" th:href="@{/images/ecuador.png}">
+</head>
+<body class="dash-body">
+
+<div class="dash-sidebar">
+
+    <div class="navbar-logo dashboard-logo-card">
+        <img th:src="@{/images/ecuador.png}" alt="Logo">
+    </div>
+
+    <nav class="sidebar-nav">
+        <a th:href="@{/dashboard}">
+            <th:block th:replace="~{fragments/icons :: dashboard}"></th:block> Inicio
+        </a>
+
+        <a th:href="@{/dashboard/testimony}">
+            <th:block th:replace="~{fragments/icons :: openimage}"></th:block> Testimonios
+        </a>
+
+        <a th:href="@{/dashboard/news}">
+            <th:block th:replace="~{fragments/icons :: mail}"></th:block> Noticias
+        </a>
+
+        <a th:href="@{/dashboard/contacts}">
+            <th:block th:replace="~{fragments/icons :: user}"></th:block> Contactos
+        </a>
+    </nav>
+
+    <form th:action="@{/logout}" method="post" class="logout-form">
+        <button type="submit">Cerrar Sesión</button>
+    </form>
+</div>
+
+<main class="dash-main">
+    <div th:insert="${content}"></div>
+</main>
+
+</body>
+</html>
