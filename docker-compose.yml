@@ -6,9 +6,9 @@ services:
     environment:
       POSTGRES_DB: ecuador-comparte-db
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 123456789
+      POSTGRES_PASSWORD: 987654321
     ports:
-      - "5433:5432"
+      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -30,7 +30,7 @@ services:
       PORT: 8080
       SPRING_DATASOURCE_URL: jdbc:postgresql://ecuador-comparte-db:5432/ecuador-comparte-db
       SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: 123456789
+      SPRING_DATASOURCE_PASSWORD: 987654321
 
 volumes:
   postgres_data:
