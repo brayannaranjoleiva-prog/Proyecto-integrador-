@@ -22,13 +22,28 @@
 * { box-sizing: border-box; }
 body { margin: 0; font-family: 'Segoe UI', sans-serif; background-color: var(--mint-light); color: var(--text-dark); line-height: 1.6; }
 
-/* NAVBAR */
-.navbar-table { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 20px 50px; background: var(--white); border-bottom: 1px solid var(--mint); position: sticky; top: 0; z-index: 1000; }
-.navbar-menu { display: flex; gap: 25px; }
-.navbar-link { text-decoration: none; color: var(--text-muted); font-weight: 600; }
-.navbar-link.active { color: var(--forest); border-bottom: 2px solid var(--forest); }
 
-/* HERO SECTION (El impacto de tu captura) */
+.navbar-table {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    left: 0;
+    right: 0;
+
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 50px;
+    background: var(--white);
+    border-bottom: 1px solid var(--mint);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+
+
 .hero-section { text-align: center; padding: 100px 20px; background: var(--forest); color: var(--white); }
 .hero-title { font-size: 3.5rem; color: var(--white); margin-bottom: 20px; }
 .hero-subtitle { font-size: 1.25rem; opacity: 0.9; margin-bottom: 30px; }
@@ -1935,7 +1950,7 @@ a:hover { text-decoration: underline; }
     letter-spacing: 0.5px;
 }
 
-/* Filas de la Tabla e Interactividad */
+
 .dash-table-row {
     border-bottom: 1px solid #f1f5f9;
     transition: background-color 0.2s ease, transform 0.15s ease;
@@ -1945,9 +1960,9 @@ a:hover { text-decoration: underline; }
     border-bottom: none;
 }
 
-/* Efecto de iluminación interactiva al pasar el cursor */
+
 .dash-table-row:hover {
-    background-color: #f4faf9; /* Tono menta ultraclaro */
+    background-color: #f4faf9;
     cursor: pointer;
 }
 
@@ -2077,7 +2092,7 @@ a:hover { text-decoration: underline; }
     color: #004d40;
 }
 
-/* Tarjeta de Expediente de Detalle */
+
 .dash-detail-card {
     background: #ffffff;
     border-radius: 12px;
@@ -2087,7 +2102,7 @@ a:hover { text-decoration: underline; }
     margin-top: 20px;
 }
 
-/* Grilla para las celdas de información de contacto */
+
 .detail-info-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -2095,7 +2110,7 @@ a:hover { text-decoration: underline; }
     margin-bottom: 25px;
 }
 
-/* Bloques de campo individuales */
+
 .detail-field-box {
     display: flex;
     flex-direction: column;
@@ -2465,16 +2480,16 @@ textarea.form-control {
     align-items: start;
 }
 
-/* Espacio controlado para la imagen del logo */
+
 .footer-logo-img {
-    max-height: 55px; /* Limita el alto del logo para mantener el footer compacto */
+    max-height: 55px;
     width: auto;
     display: block;
     margin-bottom: 15px;
 
 }
 
-/* Títulos de las columnas más sutiles */
+
 .footer-column h3 {
     font-size: 1.05rem;
     margin-top: 0;
@@ -2508,11 +2523,11 @@ textarea.form-control {
 }
 
 .social-icon:hover {
-    background-color: #26a69a; /* Tu verdecito menta al pasar el mouse */
+    background-color: #26a69a;
     color: #ffffff;
 }
 
-/* Enlaces y textos del footer apretados */
+
 .footer-links, .footer-contact-info {
     list-style: none;
     padding: 0;
@@ -2643,18 +2658,14 @@ textarea.form-control {
 }
 
 
-/* ==========================================================================
-   ALINEACIÓN CORREGIDA PARA EL SIDEBAR
-   ========================================================================== */
 
-/* La tarjeta del logo alineada con el padding general */
 .dash-sidebar .dashboard-logo-card {
     background-color: rgba(255, 255, 255, 0.11);
     padding: 12px;
     border-radius: 10px;
     display: block;
     width: fit-content;
-    margin: 25px 0 35px 24px; /* Separación de 24px de la izquierda */
+    margin: 25px 0 35px 24px;
     backdrop-filter: blur(4px);
 }
 
@@ -2664,18 +2675,18 @@ textarea.form-control {
     display: block;
 }
 
-/* Contenedor del menú vertical */
+
 .sidebar-nav {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding-left: 24px; /* Alineación perfecta con la tarjeta del logo */
+    padding-left: 24px;
 }
 
 /* Ajuste de cada enlace */
 .sidebar-nav a {
     display: flex;
-    align-items: center;    /* Centra verticalmente icono y texto */
+    align-items: center;
     text-decoration: none;
     color: #ffffff;
     font-size: 1.1rem;
@@ -2683,68 +2694,64 @@ textarea.form-control {
     transition: color 0.2s ease;
 }
 
-/* EL TRUCO CORRECTO: Apuntamos al SVG real que renderiza tu proyecto */
+
 .sidebar-nav a svg {
-    width: 24px !important;  /* Obliga a todos los iconos a medir exactamente lo mismo */
+    width: 24px !important;
     height: 24px !important;
-    margin-right: 16px;      /* Separación fija y exacta hacia las palabras */
-    flex-shrink: 0;          /* Evita que el icono se deforme o se comprima */
+    margin-right: 16px;
+    flex-shrink: 0;
 }
 
-/* Hover para los textos */
+
 .sidebar-nav a:hover {
     color: #26a69a !important;
 }
 
-/* El botón de cerrar sesión alineado abajo */
+
 .dash-sidebar .logout-form {
     padding: 20px 24px;
 }
-/* ==========================================================================
-   ALINEACIÓN EXACTA PARA BOTONES DE ACCIÓN (NIVELACIÓN DE FORMULARIO)
-   ========================================================================== */
 
-/* Centra el contenido de la celda */
 .actions-cell {
     text-align: center;
     vertical-align: middle;
     white-space: nowrap;
 }
 
-/* Contenedor Flexbox para alinear de forma horizontal y simétrica */
+
 .actions-container {
     display: flex;
     justify-content: center;
-    align-items: center; /* Centrado vertical exacto de los elementos */
-    gap: 10px;           /* Distancia exacta entre botones */
+    align-items: center;
+    gap: 10px;
 }
 
-/* EL TRUCO CLAVE: Obliga al formulario a comportarse como un bloque flexible alineado */
+
 .actions-container form {
     display: inline-flex;
-    margin: 0 !important;   /* Destruye cualquier margen por defecto que suba el botón */
-    padding: 0 !important;  /* Elimina paddings fantasmas */
-    align-items: center;    /* Centra el botón interno en el mismo eje */
+    margin: 0 !important;
+    padding: 0 !important;
+    align-items: center;
 }
 
-/* Estilo base idéntico para que midan exactamente lo mismo */
+
 .btn-action {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 36px;          /* Caja perfectamente simétrica */
+    width: 36px;
     height: 36px;
-    border-radius: 8px;   /* Esquinas redondeadas y modernas */
+    border-radius: 8px;
     border: none;
-    font-size: 1.1rem;    /* Tamaño ideal para el emoji interno */
-    line-height: 1;       /* Centra el emoji verticalmente dentro de la tipografía */
+    font-size: 1.1rem;
+    line-height: 1;
     cursor: pointer;
     transition: all 0.2s ease;
     text-decoration: none;
     box-sizing: border-box;
 }
 
-/* --- ESTILO INDIVIDUAL: EDITAR (Verde Menta Suave) --- */
+
 .btn-edit {
     background-color: #e0f2f1;
     color: #00796b;
@@ -2756,7 +2763,7 @@ textarea.form-control {
     box-shadow: 0 4px 8px rgba(0, 121, 107, 0.2);
 }
 
-/* --- ESTILO INDIVIDUAL: ELIMINAR (Rojo Suave) --- */
+
 .btn-delete {
     background-color: #ffebee;
     color: #c62828;
@@ -2775,48 +2782,40 @@ textarea.form-control {
     align-items: center;
 }
 
-/* ==========================================================================
-   CORRECCIÓN DE ESPACIADO Y ALINEACIÓN DE TABLAS (ESTADO Y ACCIONES)
-   ========================================================================== */
 
-/* --- CONFIGURACIÓN DE ENCABEZADOS (th) --- */
-
-/* Forzar ancho y centrado en la columna Estado */
 .th-status {
     width: 140px !important;
     text-align: center !important;
 }
 
-/* Forzar ancho y centrado en la columna Acciones */
+
 .th-actions {
     width: 150px !important;
     text-align: center !important;
 }
 
-/* --- CONFIGURACIÓN DE LAS CELDAS DE CONTENIDO (td) --- */
 
-/* Centra el badge de publicado/borrador perfectamente */
 .badge-status {
     display: inline-block;
     text-align: center;
     margin: 0 auto;
 }
 
-/* Celda que contiene al estado */
+
 td:has(.badge-status) {
     text-align: center;
     vertical-align: middle;
 }
 
-/* Celda de acciones (Garantiza que el contenedor flex no se pegue al borde) */
+
 .actions-cell {
     width: 150px;
     text-align: center;
     vertical-align: middle;
-    padding: 10px 15px !important; /* Añade un colchón interno para evitar el amontonamiento */
+    padding: 10px 15px !important;
 }
 
-/* Ajuste final al contenedor de botones que ya tenías */
+
 .actions-container {
     display: flex;
     justify-content: center;
@@ -2825,11 +2824,7 @@ td:has(.badge-status) {
     width: 100%;
 }
 
-/* ==========================================================================
-   ALINEACIÓN Y COLORES PARA LA TABLA DE CONTACTOS
-   ========================================================================== */
 
-/* Centrado de la celda de acciones */
 .actions-cell {
     text-align: center;
     vertical-align: middle;
@@ -2837,7 +2832,7 @@ td:has(.badge-status) {
     padding: 10px 15px !important;
 }
 
-/* Contenedor flexible horizontal */
+
 .actions-container {
     display: flex;
     justify-content: center;
@@ -2845,14 +2840,14 @@ td:has(.badge-status) {
     gap: 10px;
 }
 
-/* Quita márgenes molestos del formulario de borrado */
+
 .actions-container form {
     display: inline-flex;
     margin: 0 !important;
     padding: 0 !important;
 }
 
-/* Botón Ver (Estilo turquesa sutil) */
+
 .btn-view-contact {
     background-color: #e0f2f1;
     color: #00796b !important;
@@ -2873,7 +2868,7 @@ td:has(.badge-status) {
     color: #ffffff !important;
 }
 
-/* Botón Borrar (Fondo rojo, texto BLANCO garantizado) */
+
 .btn-delete-contact {
     background-color: #e53935;  /* Rojo vivo */
     color: #ffffff !important;  /* ¡LETRA BLANCA! */
@@ -2895,3 +2890,168 @@ td:has(.badge-status) {
     box-shadow: 0 4px 8px rgba(198, 40, 40, 0.25);
 }
 
+
+.dash-hero-banner .dash-hero-content h1 {
+    color: #ffffff !important;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+
+.dash-hero-banner .dash-hero-content p {
+    color: #e2e8f0 !important;
+    font-size: 1.05rem;
+    max-width: 700px;
+}
+
+
+.navbar-table {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+
+    padding: 20px 140px !important;
+
+    background: var(--white);
+    border-bottom: 1px solid var(--mint);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-sizing: border-box !important;
+}
+
+
+.news-carousel-wrapper {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+
+.news-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #ffffff;
+    color: #0f766e;
+    border: 1px solid #e2e8f0;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.25s ease;
+    z-index: 10;
+}
+
+.news-nav-btn:hover {
+    background: #0f766e;
+    color: #ffffff;
+    border-color: #0f766e;
+    box-shadow: 0 6px 16px rgba(15, 118, 110, 0.25);
+}
+
+.news-btn-prev { left: -22px; }
+.news-btn-next { right: -22px; }
+
+
+.grid-container .news-card-item,
+.grid-container .testimony-card-item {
+    display: none;
+    opacity: 0;
+}
+
+
+.grid-container .news-card-item.show-card,
+.grid-container .testimony-card-item.show-card {
+    display: flex;
+    flex-direction: column;
+    animation: localCarouselFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+
+@keyframes localCarouselFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.news-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 25px;
+}
+
+.news-dot {
+    width: 10px;
+    height: 10px;
+    background-color: #cbd5e1;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.news-dot:hover {
+    background-color: #94a3b8;
+}
+
+.news-dot.active {
+    background-color: #0f766e;
+    width: 26px;
+    border-radius: 6px;
+}
+
+
+.view-all-news-container {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 55px;
+}
+
+.btn-view-more-news {
+    display: inline-block;
+    padding: 11px 26px;
+    background-color: transparent;
+    color: #0f766e;
+    border: 2px solid #0f766e;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.btn-view-more-news:hover {
+    background-color: #0f766e;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(15, 118, 110, 0.15);
+}
+
+.hero-label-fix {
+    background-color: rgba(0, 77, 64, 0.6) !important;
+    color: #ffffff !important;
+    font-weight: 700;
+}
+
+@media (max-width: 768px) {
+    .news-nav-btn {
+        width: 38px;
+        height: 38px;
+    }
+    .news-btn-prev { left: -10px; }
+    .news-btn-next { right: -10px; }
+}

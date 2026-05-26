@@ -2,6 +2,7 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ecuador Comparte — Inicio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" type="text/css" th:href="@{/styles1.css}">
@@ -11,7 +12,7 @@
 
 <nav class="navbar-table">
     <div class="navbar-logo">
-        <img th:src="@{/images/ecuador.png}" alt="Logo" style="height:75px;">
+        <img th:src="@{/images/ecuador.png}" alt="Logo" style="height:80px;">
     </div>
     <div class="navbar-menu">
         <a th:href="@{/}" class="navbar-link active">Inicio</a>
@@ -21,21 +22,19 @@
         <a th:href="@{/contact1}" class="navbar-link">Contacto</a>
     </div>
     <div class="navbar-actions">
-        <a th:href="@{/contact1}" class="btn-donate">Donar</a>
+        <a th:href="@{/contact1}" class="btn-donate">Contáctanos</a>
     </div>
 </nav>
 
-
 <section class="hero-section">
     <div class="hero-slider-bg">
-
         <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=1200');"></div>
         <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1200');"></div>
         <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1200');"></div>
     </div>
     <div class="hero-overlay"></div>
 
-    <span class="page-label" style="background-color: rgba(0, 77, 64, 0.6) !important; color: #ffffff !important; font-weight: 700;">ECUADOR</span>
+    <span class="page-label hero-label-fix">ECUADOR</span>
     <h1 class="hero-title">Transformando realidades con <em>solidaridad.</em></h1>
     <p class="hero-subtitle">Nuestra misión en Ecuador es el corazón de nuestras operaciones en la región andina.</p>
     <div class="hero-cta-group">
@@ -49,98 +48,99 @@
     </div>
 </section>
 
-
 <section class="stats-bar">
     <div class="container stats-container">
-        <div><h2 class="stat-count" data-target="500">+0</h2><p>Familias ayudadas</p></div>
-        <div><h2 class="stat-count" data-target="20">+0</h2><p>Proyectos activos</p></div>
+        <div><h2 class="stat-count" data-target="1200">+0</h2><p>Familias ayudadas</p></div>
+        <div><h2 class="stat-count" data-target="70">+0</h2><p>Proyectos activos</p></div>
         <div><h2 class="stat-count" data-target="10">+0</h2><p>Años de trayectoria</p></div>
     </div>
 </section>
 
 <main class="container">
 
-
-
-
+    <!-- SECCIÓN NOTICIAS INTERACTIVAS -->
     <section class="section-header">
         <span class="page-label">Actualidad</span>
         <h2>Últimas <em>Noticias</em></h2>
     </section>
-    <div class="grid-container" th:if="${latestNews != null}">
 
-        <div class="card" th:each="news : ${latestNews}">
+    <div class="news-carousel-wrapper" th:if="${latestNews != null and !latestNews.isEmpty()}">
+        <button class="news-nav-btn news-btn-prev" id="newsPrevBtn" type="button">
+            <i class="fas fa-chevron-left"></i>
+        </button>
 
-            <img th:src="${news.imageUrl}"
-                 alt="Imagen noticia"
-                 class="news-home-image">
-
-            <div class="card-body">
-                <h3 th:text="${news.title}">Título</h3>
-
-                <p th:text="${news.summary}">
-                    Resumen
-                </p>
-
-                <a th:href="@{/news/{id}(id=${news.id})}">
-                    Leer más ➔
-                </a>
+        <div class="grid-container" id="newsGrid">
+            <div class="card news-card-item" th:each="news : ${latestNews}">
+                <img th:src="${news.imageUrl}" alt="Imagen noticia" class="news-home-image">
+                <div class="card-body">
+                    <h3 th:text="${news.title}">Título</h3>
+                    <p th:text="${news.summary}">Resumen</p>
+                    <a th:href="@{/news/{id}(id=${news.id})}">Leer más ➔</a>
+                </div>
             </div>
-
         </div>
 
+        <button class="news-nav-btn news-btn-next" id="newsNextBtn" type="button">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <div class="news-dots" id="newsDotsContainer"></div>
+    </div>
+
+    <div class="view-all-news-container">
+        <a th:href="@{/news}" class="btn-view-more-news">Ver más noticias del portal</a>
     </div>
 
 
+    <!-- SECCIÓN TESTIMONIOS INTERACTIVOS -->
     <section class="section-header">
         <span class="page-label">Nuestra Comunidad</span>
         <h2>Testimonios de <em>Impacto</em></h2>
     </section>
-    <div class="grid-container" th:if="${testimony != null}">
-        <div class="card testimony-card" th:each="t : ${testimony}">
-            <p class="testimony-quote" th:text="'“' + ${t.summary} + '”'"></p>
-            <div class="testimony-author">
-                <img th:if="${t.imageUrl}" th:src="${t.imageUrl}" alt="Persona" class="avatar">
-                <div>
-                    <strong th:text="${t.author}">Nombre</strong>
-                    <span th:text="${t.location}">Ubicación</span>
+
+    <div class="news-carousel-wrapper" th:if="${testimony != null and !testimony.isEmpty()}">
+        <button class="news-nav-btn news-btn-prev" id="testimonyPrevBtn" type="button">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+
+        <div class="grid-container" id="testimonyGrid">
+            <div class="card testimony-card-item testimony-card" th:each="t : ${testimony}">
+                <p class="testimony-quote" th:text="'“' + ${t.summary} + '”'"></p>
+                <div class="testimony-author">
+                    <img th:if="${t.imageUrl}" th:src="${t.imageUrl}" alt="Persona" class="avatar">
+                    <div>
+                        <strong th:text="${t.author}">Nombre</strong>
+                        <span th:text="${t.location}">Ubicación</span>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <button class="news-nav-btn news-btn-next" id="testimonyNextBtn" type="button">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <div class="news-dots" id="testimonyDotsContainer"></div>
+    </div>
+
+    <div class="view-all-news-container">
+        <a th:href="@{/testimony}" class="btn-view-more-news">Ver más testimonios</a>
     </div>
 </main>
 
 <footer class="main-footer">
     <div class="footer-container">
-
         <div class="footer-column footer-brand">
-
             <div class="logo-footer-wrapper">
                 <img src="/images/ecuador.png" alt="Ecuador Comparte Logo" class="footer-logo-img">
             </div>
-
             <div class="footer-socials">
-
-                <a href="https://www.facebook.com/Ccomparte" target="_blank" class="social-icon">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-
-
-                <a href="https://www.instagram.com/ccomparte/" target="_blank" class="social-icon">
-                    <i class="fab fa-instagram"></i>
-                </a>
-
-                <a href="https://www.linkedin.com/company/fundaci%C3%B3n-colombia-comparte/" target="_blank" class="social-icon">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-
-
-                <a href="https://www.youtube.com/channel/UCUF87CDCgtl2RSug-Jeqmig" target="_blank" class="social-icon">
-                    <i class="fab fa-youtube"></i>
-                </a>
+                <a href="https://www.facebook.com/Ccomparte" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/ccomparte/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/fundaci%C3%B3n-colombia-comparte/" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.youtube.com/channel/UCUF87CDCgtl2RSug-Jeqmig" target="_blank" class="social-icon"><i class="fab fa-youtube"></i></a>
             </div>
         </div>
-
 
         <div class="footer-column">
             <h3>Explora</h3>
@@ -153,32 +153,15 @@
             </ul>
         </div>
 
-
         <div class="footer-column">
             <h3>Contáctanos</h3>
             <ul class="footer-contact-info">
-                <li>
-                    <a href="tel:+573212302138" style="text-decoration: none; color: inherit; transition: color 0.2s;">
-                        (+57) 321 230 2138
-                    </a>
-                </li>
-
-                <li>
-                    <a href="tel:+573164673087" style="text-decoration: none; color: inherit; transition: color 0.2s;">
-                        (+57) 316 467 3087
-                    </a>
-                </li>
-
-                <li>
-                    <a href="mailto:comunicaciones@colombiacomparte.com?subject=Contacto" style="text-decoration: none; color: inherit; transition: color 0.2s;">
-                        comunicaciones@colombiacomparte.com
-                    </a>
-                </li>
+                <li><a href="tel:+573212302138">(+57) 321 230 2138</a></li>
+                <li><a href="tel:+573164673087">(+57) 316 467 3087</a></li>
+                <li><a href="mailto:comunicaciones@colombiacomparte.com?subject=Contacto">comunicaciones@colombiacomparte.com</a></li>
             </ul>
         </div>
     </div>
-
-
     <div class="footer-bottom">
         <p>&copy; 2026 Ecuador Comparte. Todos los derechos reservados.</p>
     </div>
@@ -186,21 +169,23 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-
+        // --- HERO SLIDER ---
         let currentSlide = 0;
         const slides = document.querySelectorAll('.hero-slide');
         const dots = document.querySelectorAll('.hero-dot');
 
         function changeHeroBackground() {
-            slides[currentSlide].classList.remove('active');
-            dots[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-            dots[currentSlide].classList.add('active');
+            if(slides.length > 0) {
+                slides[currentSlide].classList.remove('active');
+                dots[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+                dots[currentSlide].classList.add('active');
+            }
         }
         setInterval(changeHeroBackground, 5000);
 
-
+        // --- CONTADOR DE ESTADÍSTICAS ---
         const counters = document.querySelectorAll('.stat-count');
         counters.forEach(counter => {
             const updateCount = () => {
@@ -217,6 +202,84 @@
             };
             updateCount();
         });
+
+        // --- FUNCIÓN GENÉRICA PARA CARRUSELES (NOTICIAS Y TESTIMONIOS) ---
+        function initializeLocalCarousel(cardsSelector, prevBtnId, nextBtnId, dotsContainerId) {
+            const cards = document.querySelectorAll(cardsSelector);
+            const prevBtn = document.getElementById(prevBtnId);
+            const nextBtn = document.getElementById(nextBtnId);
+            const dotsContainer = document.getElementById(dotsContainerId);
+
+            let currentPage = 0;
+            const cardsPerPage = 3;
+            const totalPages = Math.ceil(cards.length / cardsPerPage);
+
+            if (cards.length > 0) {
+                for (let i = 0; i < totalPages; i++) {
+                    const dot = document.createElement('span');
+                    dot.classList.add('news-dot');
+                    if (i === 0) dot.classList.add('active');
+                    dot.addEventListener('click', () => { goToPage(i); });
+                    dotsContainer.appendChild(dot);
+                }
+
+                const internalDots = dotsContainer.querySelectorAll('.news-dot');
+
+                function showPage(page) {
+                    const start = page * cardsPerPage;
+                    const end = start + cardsPerPage;
+
+                    cards.forEach((card, index) => {
+                        if (index >= start && index < end) {
+                            card.classList.add('show-card');
+                        } else {
+                            card.classList.remove('show-card');
+                        }
+                    });
+
+                    internalDots.forEach((dot, index) => {
+                        if (index === page) dot.classList.add('active');
+                        else dot.classList.remove('active');
+                    });
+
+                    if (page === 0) prevBtn.style.visibility = 'hidden';
+                    else prevBtn.style.visibility = 'visible';
+
+                    if (page === totalPages - 1 || totalPages <= 1) nextBtn.style.visibility = 'hidden';
+                    else nextBtn.style.visibility = 'visible';
+                }
+
+                function goToPage(page) {
+                    currentPage = page;
+                    showPage(currentPage);
+                }
+
+                prevBtn.addEventListener('click', () => {
+                    if (currentPage > 0) {
+                        currentPage--;
+                        showPage(currentPage);
+                    }
+                });
+
+                nextBtn.addEventListener('click', () => {
+                    if (currentPage < totalPages - 1) {
+                        currentPage++;
+                        showPage(currentPage);
+                    }
+                });
+
+                showPage(0);
+            } else {
+                if(prevBtn) prevBtn.style.display = 'none';
+                if(nextBtn) nextBtn.style.display = 'none';
+            }
+        }
+
+        // Inicializar carrusel de noticias de forma segura
+        initializeLocalCarousel('.news-card-item', 'newsPrevBtn', 'newsNextBtn', 'newsDotsContainer');
+
+        // Inicializar carrusel de testimonios de forma segura
+        initializeLocalCarousel('.testimony-card-item', 'testimonyPrevBtn', 'testimonyNextBtn', 'testimonyDotsContainer');
     });
 </script>
 
